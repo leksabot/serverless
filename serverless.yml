@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: aws-nodejs # NOTE: update this with your service name
+service: serverless-leksabot # NOTE: update this with your service name
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -20,6 +20,21 @@ service: aws-nodejs # NOTE: update this with your service name
 provider:
   name: aws
   runtime: nodejs8.10
+  region: ap-southeast-1
+
+plugins:
+  - serverless-offline
+
+environment: 
+  - MONGO_USER2:  ${ssm:MONGO_USER2}
+  - GOOGLE_VISION_API: ${ssm:GOOGLE_VISION_API}
+  - CLOUD_BUCKET: ${ssm:CLOUD_BUCKET}
+  - GCLOUD_PROJECT: ${ssm:GCLOUD_PROJECT}
+  - KEYFILE_PATH: ${ssm:KEYFILE_PATH}
+  - SECRET: ${ssm:SECRET}
+  - SECRET_TOKEN: ${ssm:SECRET_TOKEN}
+  - AUTHORIZATION: ${ssm:AUTHORIZATION}
+  - YANDEX_API: ${ssm:YANDEX_API}  
 
 # you can overwrite defaults here
 #  stage: dev
@@ -55,8 +70,17 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  app:
+    handler: app.run
+    events: 
+      - http: 
+          path: /
+          method: ANY
+          cors: true
+      - http: 
+          path: /{proxy+}
+          method: ANY
+          cors: true
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
