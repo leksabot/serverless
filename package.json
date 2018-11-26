@@ -1,0 +1,35 @@
+{
+  "name": "serverless",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leksabot/serverless.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leksabot/serverless/issues"
+  },
+  "homepage": "https://github.com/leksabot/serverless#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cors": "^2.8.5",
+    "dotenv": "^6.1.0",
+    "express": "^4.16.4",
+    "google-translate": "^2.2.0",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.3.13",
+    "multer": "^1.4.1",
+    "request": "^2.88.0",
+    "serverless-http": "^1.8.0"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.31.3"
+  }
+}
